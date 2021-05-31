@@ -1,0 +1,426 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://screens/startmenu.gd" type="Script" id=1]
+[ext_resource path="res://assets/fonts/Lato-Light.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://assets/fonts/Lato-Regular.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://screens/startmenu.theme" type="Theme" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 128
+outline_size = 2
+outline_color = Color( 0.105882, 0.388235, 0.682353, 1 )
+use_filter = true
+font_data = ExtResource( 3 )
+
+[sub_resource type="InputEventAction" id=2]
+action = "start"
+
+[sub_resource type="ShortCut" id=3]
+shortcut = SubResource( 2 )
+
+[sub_resource type="InputEventAction" id=4]
+action = "settings"
+
+[sub_resource type="ShortCut" id=5]
+shortcut = SubResource( 4 )
+
+[sub_resource type="InputEventAction" id=6]
+action = "quit"
+
+[sub_resource type="ShortCut" id=7]
+shortcut = SubResource( 6 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 64
+use_filter = true
+font_data = ExtResource( 2 )
+
+[sub_resource type="Animation" id=9]
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("SettingsMenu/MainMenu2/SettingsContainer:rect_position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1.4048, 0.0490365 ),
+"update": 0,
+"values": [ Vector2( -1920, 92 ), Vector2( 0, 92 ) ]
+}
+
+[node name="StartMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 4 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="TextureRect" parent="."]
+margin_right = 1920.0
+margin_bottom = 1083.0
+rect_pivot_offset = Vector2( 960, 540 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -541.5
+margin_top = 67.9589
+margin_right = 541.5
+margin_bottom = 222.959
+custom_fonts/font = SubResource( 1 )
+text = "Start Menu"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MainMenu" type="VBoxContainer" parent="."]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 150.0
+margin_top = -200.0
+margin_right = 550.0
+margin_bottom = 200.0
+rect_min_size = Vector2( 400, 400 )
+custom_constants/separation = 25
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StartBtn" type="Button" parent="MainMenu"]
+margin_right = 400.0
+margin_bottom = 116.0
+focus_neighbour_top = NodePath("../QuitBtn")
+focus_neighbour_bottom = NodePath("../SettingsBtn")
+size_flags_vertical = 3
+shortcut = SubResource( 3 )
+text = "Start"
+
+[node name="SettingsBtn" type="Button" parent="MainMenu"]
+margin_top = 141.0
+margin_right = 400.0
+margin_bottom = 258.0
+focus_neighbour_top = NodePath("../StartBtn")
+focus_neighbour_bottom = NodePath("../QuitBtn")
+size_flags_vertical = 3
+shortcut = SubResource( 5 )
+text = "Settings"
+
+[node name="QuitBtn" type="Button" parent="MainMenu"]
+margin_top = 283.0
+margin_right = 400.0
+margin_bottom = 400.0
+focus_neighbour_top = NodePath("../SettingsBtn")
+focus_neighbour_bottom = NodePath("../StartBtn")
+size_flags_vertical = 3
+shortcut = SubResource( 7 )
+text = "Quit"
+
+[node name="SettingsMenu" type="Popup" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="SettingsMenu"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.0392157, 0.0352941, 0.0823529, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="SettingsMenu"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -114.5
+margin_top = 74.3548
+margin_right = 114.5
+margin_bottom = 152.355
+custom_fonts/font = SubResource( 8 )
+text = "Settings"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MainMenu2" type="VBoxContainer" parent="SettingsMenu"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -640.0
+margin_top = -200.0
+margin_right = 640.0
+margin_bottom = 200.0
+size_flags_horizontal = 5
+custom_constants/separation = 25
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SettingsMenu/MainMenu2"]
+margin_right = 1280.0
+margin_bottom = 67.0
+custom_constants/separation = 25
+alignment = 1
+
+[node name="VideoBtn" type="Button" parent="SettingsMenu/MainMenu2/HBoxContainer"]
+margin_right = 410.0
+margin_bottom = 67.0
+focus_neighbour_left = NodePath("../ControlsBtn")
+focus_neighbour_right = NodePath("../AudioBtn")
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Video"
+
+[node name="AudioBtn" type="Button" parent="SettingsMenu/MainMenu2/HBoxContainer"]
+margin_left = 435.0
+margin_right = 845.0
+margin_bottom = 67.0
+focus_neighbour_left = NodePath("../VideoBtn")
+focus_neighbour_right = NodePath("../ControlsBtn")
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Audio"
+
+[node name="ControlsBtn" type="Button" parent="SettingsMenu/MainMenu2/HBoxContainer"]
+margin_left = 870.0
+margin_right = 1280.0
+margin_bottom = 67.0
+focus_neighbour_left = NodePath("../AudioBtn")
+focus_neighbour_right = NodePath("../VideoBtn")
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Controls"
+
+[node name="SettingsContainer" type="VBoxContainer" parent="SettingsMenu/MainMenu2"]
+margin_top = 92.0
+margin_right = 1280.0
+margin_bottom = 343.0
+
+[node name="VideoSettings" type="GridContainer" parent="SettingsMenu/MainMenu2/SettingsContainer"]
+margin_right = 1280.0
+margin_bottom = 251.0
+rect_min_size = Vector2( 640, 0 )
+custom_constants/vseparation = 25
+custom_constants/hseparation = 25
+columns = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="SettingsMenu/MainMenu2/SettingsContainer/VideoSettings"]
+margin_top = 4.0
+margin_right = 972.0
+margin_bottom = 63.0
+size_flags_horizontal = 3
+text = "Vsync"
+
+[node name="CheckButton" type="CheckButton" parent="SettingsMenu/MainMenu2/SettingsContainer/VideoSettings"]
+margin_left = 1208.0
+margin_right = 1280.0
+margin_bottom = 67.0
+size_flags_horizontal = 8
+size_flags_vertical = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="SettingsMenu/MainMenu2/SettingsContainer/VideoSettings"]
+margin_top = 96.0
+margin_right = 972.0
+margin_bottom = 155.0
+size_flags_horizontal = 3
+text = "Fullscreen"
+
+[node name="CheckBox" type="CheckBox" parent="SettingsMenu/MainMenu2/SettingsContainer/VideoSettings"]
+margin_left = 1202.0
+margin_top = 92.0
+margin_right = 1280.0
+margin_bottom = 159.0
+size_flags_horizontal = 8
+text = "on"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label3" type="Label" parent="SettingsMenu/MainMenu2/SettingsContainer/VideoSettings"]
+margin_top = 188.0
+margin_right = 972.0
+margin_bottom = 247.0
+size_flags_horizontal = 3
+text = "Resolution"
+
+[node name="OptionButton" type="OptionButton" parent="SettingsMenu/MainMenu2/SettingsContainer/VideoSettings"]
+margin_left = 997.0
+margin_top = 184.0
+margin_right = 1280.0
+margin_bottom = 251.0
+size_flags_horizontal = 8
+text = "1920 * 1080"
+items = [ "1920 * 1080", null, false, 0, null, "1280 * 720", null, false, 1, null ]
+selected = 0
+
+[node name="AudioSettings" type="GridContainer" parent="SettingsMenu/MainMenu2/SettingsContainer"]
+visible = false
+margin_top = 255.0
+margin_right = 1280.0
+margin_bottom = 506.0
+rect_min_size = Vector2( 640, 0 )
+custom_constants/vseparation = 25
+custom_constants/hseparation = 25
+columns = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="SettingsMenu/MainMenu2/SettingsContainer/AudioSettings"]
+margin_top = 4.0
+margin_right = 972.0
+margin_bottom = 63.0
+size_flags_horizontal = 3
+text = "Audio"
+
+[node name="CheckButton" type="CheckButton" parent="SettingsMenu/MainMenu2/SettingsContainer/AudioSettings"]
+margin_left = 1208.0
+margin_right = 1280.0
+margin_bottom = 67.0
+size_flags_horizontal = 8
+size_flags_vertical = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="SettingsMenu/MainMenu2/SettingsContainer/AudioSettings"]
+margin_top = 96.0
+margin_right = 972.0
+margin_bottom = 155.0
+size_flags_horizontal = 3
+text = "Fullscreen"
+
+[node name="CheckBox" type="CheckBox" parent="SettingsMenu/MainMenu2/SettingsContainer/AudioSettings"]
+margin_left = 1202.0
+margin_top = 92.0
+margin_right = 1280.0
+margin_bottom = 159.0
+size_flags_horizontal = 8
+text = "on"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label3" type="Label" parent="SettingsMenu/MainMenu2/SettingsContainer/AudioSettings"]
+margin_top = 188.0
+margin_right = 972.0
+margin_bottom = 247.0
+size_flags_horizontal = 3
+text = "Resolution"
+
+[node name="OptionButton" type="OptionButton" parent="SettingsMenu/MainMenu2/SettingsContainer/AudioSettings"]
+margin_left = 997.0
+margin_top = 184.0
+margin_right = 1280.0
+margin_bottom = 251.0
+size_flags_horizontal = 8
+text = "1920 * 1080"
+items = [ "1920 * 1080", null, false, 0, null, "1280 * 720", null, false, 1, null ]
+selected = 0
+
+[node name="ControlsSettings" type="GridContainer" parent="SettingsMenu/MainMenu2/SettingsContainer"]
+visible = false
+margin_top = 510.0
+margin_right = 1280.0
+margin_bottom = 761.0
+rect_min_size = Vector2( 640, 0 )
+custom_constants/vseparation = 25
+custom_constants/hseparation = 25
+columns = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="SettingsMenu/MainMenu2/SettingsContainer/ControlsSettings"]
+margin_top = 4.0
+margin_right = 972.0
+margin_bottom = 63.0
+size_flags_horizontal = 3
+text = "Controls"
+
+[node name="CheckButton" type="CheckButton" parent="SettingsMenu/MainMenu2/SettingsContainer/ControlsSettings"]
+margin_left = 1208.0
+margin_right = 1280.0
+margin_bottom = 67.0
+size_flags_horizontal = 8
+size_flags_vertical = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="SettingsMenu/MainMenu2/SettingsContainer/ControlsSettings"]
+margin_top = 96.0
+margin_right = 972.0
+margin_bottom = 155.0
+size_flags_horizontal = 3
+text = "Fullscreen"
+
+[node name="CheckBox" type="CheckBox" parent="SettingsMenu/MainMenu2/SettingsContainer/ControlsSettings"]
+margin_left = 1202.0
+margin_top = 92.0
+margin_right = 1280.0
+margin_bottom = 159.0
+size_flags_horizontal = 8
+text = "on"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label3" type="Label" parent="SettingsMenu/MainMenu2/SettingsContainer/ControlsSettings"]
+margin_top = 188.0
+margin_right = 972.0
+margin_bottom = 247.0
+size_flags_horizontal = 3
+text = "Resolution"
+
+[node name="OptionButton" type="OptionButton" parent="SettingsMenu/MainMenu2/SettingsContainer/ControlsSettings"]
+margin_left = 997.0
+margin_top = 184.0
+margin_right = 1280.0
+margin_bottom = 251.0
+size_flags_horizontal = 8
+text = "1920 * 1080"
+items = [ "1920 * 1080", null, false, 0, null, "1280 * 720", null, false, 1, null ]
+selected = 0
+
+[node name="ColorRect2" type="ColorRect" parent="SettingsMenu"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -1080.0
+margin_right = 306.0
+color = Color( 0.0392157, 0.0352941, 0.0823529, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/settings = SubResource( 9 )
+
+[connection signal="pressed" from="MainMenu/StartBtn" to="." method="_on_StartBtn_pressed"]
+[connection signal="pressed" from="MainMenu/SettingsBtn" to="." method="_on_SettingsBtn_pressed"]
+[connection signal="pressed" from="MainMenu/QuitBtn" to="." method="_on_QuitBtn_pressed"]
+[connection signal="pressed" from="SettingsMenu/MainMenu2/HBoxContainer/VideoBtn" to="." method="_on_VideoBtn_pressed"]
+[connection signal="pressed" from="SettingsMenu/MainMenu2/HBoxContainer/AudioBtn" to="." method="_on_AudioBtn_pressed"]
+[connection signal="pressed" from="SettingsMenu/MainMenu2/HBoxContainer/ControlsBtn" to="." method="_on_ControlsBtn_pressed"]
